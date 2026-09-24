@@ -1,0 +1,7 @@
+{
+  "name": "engineering-workflow-skills",
+  "version": "1.0.0",
+  "description": "Agentic development workflow skills (scope, architect, develop, check, test, audit, sync, debug) for Google Antigravity.",
+  "skills": "./skills",
+  "agents": "./.antigravity/agents"
+}

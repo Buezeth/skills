@@ -41,8 +41,9 @@
 
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const SKILLS_DIR = new URL('../skills/', import.meta.url).pathname;
+const SKILLS_DIR = fileURLToPath(new URL('../skills/', import.meta.url));
 const violations = [];
 const warnings = []; // over WARN_AT but still under budget — visible, not fatal
 const sizes = []; // { rel, words, bytes } per .md file, for the word-count report
@@ -172,7 +173,7 @@ function walk(dir) {
 }
 
 function frontmatter(text) {
-  const m = text.match(/^---\n([\s\S]*?)\n---/);
+  const m = text.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   return m ? m[1] : '';
 }
 
@@ -189,8 +190,8 @@ function proseOnly(text) {
     .replace(/https?:\/\/\S+/g, MASK)      // bare urls
     // Frontmatter keys are defined by the Agent Skills spec (`allowed-tools`), so
     // only the description value is prose. Mask the keys, keep the description.
-    .replace(/^---\n[\s\S]*?\n---/m, (fm) =>
-      fm.split('\n').map((l) => (/^description:/.test(l) ? l : MASK(l))).join('\n')
+    .replace(/^---\r?\n[\s\S]*?\r?\n---/m, (fm) =>
+      fm.split(/\r?\n/).map((l) => (/^description:/.test(l) ? l : MASK(l))).join('\n')
     );
 }
 // Named things the skills MATCH ON: values they write into artifacts, phase names,
@@ -205,7 +206,7 @@ const PARSED_LITERALS = new Set([
 const isExemptTerm = (w) => /^[A-Z0-9-]+$/.test(w) || PARSED_LITERALS.has(w);
 
 function check(path) {
-  const rel = path.slice(SKILLS_DIR.length);
+  const rel = path.slice(SKILLS_DIR.length).replace(/\\/g, '/');
   const text = readFileSync(path, 'utf8');
   const isSkillMd = rel.endsWith('/SKILL.md');
 

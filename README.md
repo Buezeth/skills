@@ -30,7 +30,27 @@ Hardening (systems level failure mode analysis) is temporarily removed and will 
 
 ## Install
 
-Uses [npx skills](https://github.com/vercel-labs/skills). Pick your agent:
+Uses [npx skills](https://github.com/vercel-labs/skills). Pick your platform:
+
+### Google Antigravity
+
+Install directly as skills:
+
+```bash
+# Local project installation (installs into .agents/skills)
+npx skills add Buezeth/skills -a antigravity
+
+# Global installation (available across all workspaces)
+npx skills add Buezeth/skills -g -a antigravity
+```
+
+**Antigravity Plugin Integration:**
+This repository also ships native Antigravity plugin support:
+- `plugin.json` at the root defines the plugin manifest, mapping skills (`./skills`) and subagents (`./.antigravity/agents`).
+- `.antigravity/agents/` provides pre-configured read-only subagents (`researcher`, `scout`) powered by `gemini-3-flash`.
+- `GEMINI.md` and `AGENTS.md` anchor project directives and coding rules.
+
+### Claude Code & Other Agents
 
 ```bash
 # Claude Code (installs into .claude/skills, then restart Claude Code)
@@ -40,7 +60,7 @@ npx skills@latest add jsmastery-pro/skills -a claude-code
 npx skills@latest add jsmastery-pro/skills
 ```
 
-Works on any Agent Skills client (Claude Code, Cursor, Codex, Gemini CLI, and [more](https://agentskills.io/clients)). Commit the installed skills folder to share the workflow with your team.
+Works on any Agent Skills client (Google Antigravity, Claude Code, Cursor, Codex, Gemini CLI, and [more](https://agentskills.io/clients)). Commit the installed skills folder to share the workflow with your team.
 
 Each skill's instructions live in its `SKILL.md`, which is what every client reads. The `agents/openai.yaml` beside it is interface metadata only (the name, blurb, and opening prompt Codex shows in its agent picker); it carries no logic of its own.
 

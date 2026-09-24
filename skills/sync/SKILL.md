@@ -16,7 +16,7 @@ Closes the loop on a completed change: syncs AGENTS.md files, the scope, and lin
 
 **`agent-prompt.md`** is the single source of truth for the maintenance rules; SKILL.md covers only orchestration. The main thread reads it and does the maintenance itself (see Step 3).
 
-**Canonical file:** durable context lives in the tool agnostic **`AGENTS.md`**; **`CLAUDE.md` is only a pointer** to it. /sync edits/creates both, treating them only as targets, never as a change source.
+**Canonical file:** durable context lives in the tool agnostic **`AGENTS.md`**; **`GEMINI.md` and `CLAUDE.md` are environment pointers and directives** to it. Subagents and project configs reside under `.antigravity/` and `.claude/`. /sync edits/creates these context files, treating them only as targets, never as a change source.
 
 ## Boundaries
 

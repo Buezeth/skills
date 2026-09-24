@@ -22,11 +22,11 @@ Does not create specs (/architect owns those), maintain files after changes (/sy
 
 ## Context file convention (AGENTS.md is canonical)
 
-Durable context lives in the tool agnostic `AGENTS.md` (root and nested); every agent (Codex, Cursor, Claude Code, and others) reads it. `CLAUDE.md` is only a one line pointer whose entire body imports the sibling `AGENTS.md` via Claude Code's `@` import (exact pointer body in `agent-prompt.md`); content is never duplicated across the two.
+Durable context lives in the tool agnostic `AGENTS.md` (root and nested); every agent (Antigravity, Codex, Cursor, Claude Code, and others) reads it. `GEMINI.md` and `CLAUDE.md` serve as environment pointers or workspace directives importing the sibling `AGENTS.md` (e.g. `@AGENTS.md`); content is never duplicated across them. Project configs and agent personas live in `.antigravity/` and `.claude/`.
 
 - Write knowledge into `AGENTS.md`. Create it when missing. Never overwrite an existing `AGENTS.md` (it may be user or tool authored); gap fill conservatively, with permission.
-- Migrate legacy content: a `CLAUDE.md` with content but no `AGENTS.md` → ask permission, move its content into a new `AGENTS.md`, replace `CLAUDE.md` with the pointer. Never silently discard curated content.
-- Root stays short and global; nested `AGENTS.md` only for meaningful areas with real conventions (same root/nested rules as previously applied to `CLAUDE.md`).
+- Migrate legacy content: a `CLAUDE.md` or `GEMINI.md` with standalone content but no `AGENTS.md` → ask permission, move its content into a new `AGENTS.md`, and replace it with the pointer/directive. Never silently discard curated content.
+- Root stays short and global; nested `AGENTS.md` only for meaningful areas with real conventions.
 
 ## Scope
 

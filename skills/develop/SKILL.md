@@ -117,7 +117,7 @@ This decision was recorded by /develop, not deliberated. Run `/architect <featur
 to deliberate and ratify it. Until then it stays flagged as an owed decision; it does not block marking the feature `done`.
 ```
 
-Point the feature's scope `spec` line at this file. The assumption is now durable: it survives `/clear`, teammates read it, and a later `/develop` builds against it instead of guessing again. The `Assumed` spec stays flagged as owing ratification; it does not block marking the feature `done` (see `flow/build.md`, Step 4).
+Point the feature's scope `spec` line at this file. The assumption is now durable: it survives session resets, teammates read it, and a later `/develop` builds against it instead of guessing again. The `Assumed` spec stays flagged as owing ratification; it does not block marking the feature `done` (see `flow/build.md`, Step 4).
 
 On `Architect it first`, end with:
 
